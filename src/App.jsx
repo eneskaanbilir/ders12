@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 
 function App() {
+  console.log("aaa")
+  const [sayac, sayacGuncelle] = useState(0)
+  const [ad, adGuncelle] = useState("Ad tanımsız")
 
-  const [pencereBoyutu, pencereBoyutuGuncelle] = useState({
-    genislik: window.innerWidth,
-    yukseklik: window.innerHeight,
-  });
+  useEffect(()=>{
+    document.title = sayac;
+    console.log("aaaaa")
+  
+  }, [sayac])
+ 
+  function adFonskiyonu() {
+    let zaman = new Date().getSeconds()
+    adGuncelle("Ahmet Yılmaz: " + zaman )
+  }
 
- // useEffect( ()=>{ console.count("Useeffect çalıştı") } , [] )
-
- useEffect( ()=>{
-  pencereBoyutuGuncelle( { genislik: 100, yukseklik: 200 } )
- }, [] )
 
   return (
-    <div>
-      <p>Pencere genişliği: {pencereBoyutu.genislik}</p>
-      <p>Pencere yüksekliği: {pencereBoyutu.yukseklik}</p>
-    </div>
+    <>
+      <p>{sayac}</p>
+      <button onClick={ ()=>{  sayacGuncelle( oncekiDeger=>oncekiDeger+1)  } }>Arttır</button>
+      <p>Ad: {ad}</p>
+      <button onClick={adFonskiyonu}>Ad Güncelle</button>
+    </>
   );
 }
 
