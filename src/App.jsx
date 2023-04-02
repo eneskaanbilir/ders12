@@ -1,24 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import C1 from "./C1";
+import C2 from "./C2";
 
 function App() {
+  const [c1goster, c1gosterGuncelle] = useState(false)
+  const [c2goster, c2gosterGuncelle] = useState(false)
 
-  const [pencereBoyutu, pencereBoyutuGuncelle] = useState({
-    genislik: window.innerWidth,
-    yukseklik: window.innerHeight,
-  });
+  console.count("App")
 
- // useEffect( ()=>{ console.count("Useeffect çalıştı") } , [] )
+  function c1Fonksiyonu() {
+    c1gosterGuncelle(oncekiDeger => !oncekiDeger)
+  }
 
- useEffect( ()=>{
-  pencereBoyutuGuncelle( { genislik: 100, yukseklik: 200 } )
- }, [] )
+  function c2Fonksiyonu() {
+    c2gosterGuncelle(oncekiDeger => !oncekiDeger)
+  }
 
   return (
-    <div>
-      <p>Pencere genişliği: {pencereBoyutu.genislik}</p>
-      <p>Pencere yüksekliği: {pencereBoyutu.yukseklik}</p>
-    </div>
+    <>
+      <button onClick={c1Fonksiyonu}>C1 göster/gizle</button>
+      <button onClick={c2Fonksiyonu}>C2 göster/gizle</button>
+
+      {c1goster === true ? <C1 /> : ""}
+      {c2goster === true ? <C2 /> : ""}
+    </>
   );
 }
 
 export default App;
+
